@@ -1,0 +1,26 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+}
+
+.scroller::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+

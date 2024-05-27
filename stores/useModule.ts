@@ -52,5 +52,22 @@ export default defineStore("useModule", () => {
     return null;
   };
 
-  return { getModule, setModule, asideLinks, getSearchAsideLinks };
+  const saveQuickAcess = (item: SubLink) => {
+    const code = item.path.split("/");
+
+    if (asideLinks.value) {
+      const sb = asideLinks.value[code[3]].subLinks;
+
+      // Setando contador de acesso
+      sb.find((value) => value.name === item.name)!.counter++;
+    }
+  };
+
+  return {
+    getModule,
+    setModule,
+    asideLinks,
+    getSearchAsideLinks,
+    saveQuickAcess,
+  };
 });

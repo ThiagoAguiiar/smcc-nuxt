@@ -2,6 +2,7 @@ export type SubLink = {
   name: string;
   path: string;
   icon?: string;
+  counter: number;
 };
 
 export type BreadcumbLinks = {

@@ -7,7 +7,7 @@
         </span>
 
         <div class="flex justify-end w-full gap-x-5 h-full items-center">
-          <FormModule placeholder="Selecionar módulo" class="w-[200px]" />
+          <FormModule v-model="module" placeholder="Selecionar módulo" class="w-[200px]" />
 
           <DashboardProfile />
         </div>
@@ -40,5 +40,5 @@
 
 <script setup lang="ts">
 const m = useModule();
-const module = m.getModule() || "";
+const module = ref<string>(m.getModule() || "");
 </script>

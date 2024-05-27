@@ -14,11 +14,12 @@
           v-for="{ baseURL, icon, name, subLinks } in m.asideLinks"
           :text="name"
           :icon="icon"
-          :items="subLinks && subLinks.map((item: any) => {
+          :items="subLinks && subLinks.map((item: SubLink) => {
             return {
               name: item.name,
               path: baseURL + item.path,
-              icon: item.icon
+              icon: item.icon,
+              counter: item.counter
             };
           })"
         />
@@ -30,12 +31,14 @@
     >
       <UButton square color="white" trailing icon="solar:settings-linear" />
 
-      <UButton
-        square
-        color="red"
-        trailing
-        icon="fluent:arrow-exit-20-regular"
-      />
+      <UTooltip text="Sair">
+        <UButton
+          square
+          color="red"
+          trailing
+          icon="fluent:arrow-exit-20-regular"
+        />
+      </UTooltip>
     </div>
   </aside>
 </template>

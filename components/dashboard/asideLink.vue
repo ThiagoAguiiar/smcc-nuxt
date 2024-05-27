@@ -48,7 +48,12 @@
       >
         <NuxtLink
           v-for="item in items"
-          @click.stop
+          @click="
+            (e) => {
+              e.stopPropagation();
+              m.saveQuickAcess(item);
+            }
+          "
           :to="item.path"
           class="truncate flex items-center sublink"
         >
@@ -70,6 +75,7 @@
 
 <script setup lang="ts">
 const isChevronDown = ref<boolean>(false);
+const m = useModule();
 
 defineProps({
   items: {

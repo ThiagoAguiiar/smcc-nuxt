@@ -1,25 +1,27 @@
 <template>
-  <div class="p-5 py-4 border-b">
-    <div class="flex items-center gap-x-1">
-      <Icon v-if="icon" :name="icon" />
-      <h2 class="text-md font-medium">{{ title }}</h2>
+  <nav>
+    <div class="border-b px-5 py-4">
+      <div class="flex items-center gap-x-1">
+        <Icon v-if="icon" :name="icon" />
+        <h2 class="text-lg font-medium">{{ title }}</h2>
+      </div>
+
+      <UBreadcrumb v-if="breadcumb" :links="breadcumb" class="mt-2">
+        <template #default="{ link, isActive }">
+          <UBadge
+            :color="isActive ? 'black' : 'gray'"
+            class="rounded-full truncate"
+          >
+            {{ link.label }}
+          </UBadge>
+        </template>
+
+        <template #divider>
+          <Icon name="fluent:chevron-right-20-regular" />
+        </template>
+      </UBreadcrumb>
     </div>
-
-    <UBreadcrumb :links="breadcumb" class="mt-2">
-      <template #default="{ link, isActive, index }">
-        <UBadge
-          :color="isActive ? 'black' : 'gray'"
-          class="rounded-full truncate"
-        >
-          {{ link.label }}
-        </UBadge>
-      </template>
-
-      <template #divider>
-        <Icon name="fluent:chevron-right-20-regular" />
-      </template>
-    </UBreadcrumb>
-  </div>
+  </nav>
 </template>
 
 <script setup lang="ts">

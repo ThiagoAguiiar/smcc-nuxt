@@ -1,6 +1,6 @@
 <template>
   <div class="realtive">
-    <UInput v-model="value" :type="showPassword ? 'text' : 'password'" />
+    <UInput v-model="value" :type="showPassword ? 'text' : 'password'" :size="size" />
 
     <div
       v-if="value.length > 0"
@@ -22,6 +22,11 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: true,
+  },
+  size: {
+    type: String as PropType<"lg" | "xs" | "md" | "2xs" | "sm">,
+    required: false,
+    default: "md"
   },
 });
 

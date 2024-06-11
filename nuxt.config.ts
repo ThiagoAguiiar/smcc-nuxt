@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
@@ -13,7 +12,17 @@ export default defineNuxtConfig({
     preference: "light",
   },
 
+  build: {
+    transpile: ["maska"],
+  },
+
   imports: {
-    dirs: ["types/**", "test/**"],
+    dirs: ["types/**", "validations/**", "./models"],
+  },
+
+  runtimeConfig: {
+    public: {
+      smccSettingsCookie: "smcc-settings",
+    },
   },
 });

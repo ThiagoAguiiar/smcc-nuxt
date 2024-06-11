@@ -12,9 +12,9 @@
     <UModal v-model="isOpen">
       <div class="h-[500px] overflow-y-auto">
         <UCommandPalette
-          @update:model-value="(option: SubLink) => navigateTo(option.path)"
+          @update:model-value="(option: CommandPalleteItem) => updateModelValue(option)"
           :autoselect="false"
-          :groups="m.getSearchAsideLinks() || []"
+          :groups="s.asideLinksSearch"
           :fuse="{ resultLimit: 7, fuseOptions: { threshold: 0.1 } }"
           placeholder="Pesquisar"
         >
@@ -37,6 +37,11 @@
 </template>
 
 <script setup lang="ts">
-const m = useModule();
+const s = useSidebar();
 const isOpen = ref<boolean>(false);
+
+const updateModelValue = (option: CommandPalleteItem) => {
+  navigateTo(option.to);
+  isOpen.value = false;
+};
 </script>

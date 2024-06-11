@@ -24,10 +24,6 @@ const dropOptions = [
       label: "Seu Perfil",
       icon: "lucide:user-round",
     },
-    {
-      label: "Configurações",
-      icon: "solar:settings-linear",
-    },
   ],
   [
     {

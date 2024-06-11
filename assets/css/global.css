@@ -8,8 +8,12 @@ body {
   box-sizing: border-box;
 }
 
+.scroller {
+  scroll-behavior: smooth;
+}
+
 .scroller::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 
 .scroller::-webkit-scrollbar-track {
@@ -24,3 +28,10 @@ body {
   background: #a3a3a3;
 }
 
+.scroller-rounded::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+}
+
+.scroller-rounded::-webkit-scrollbar-track {
+  border-radius: 7px;
+}

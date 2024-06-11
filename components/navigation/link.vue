@@ -39,7 +39,7 @@
       />
     </NuxtLink>
 
-    <transition name="menu-transition">
+    <Transition name="menu-transition">
       <div
         :class="[
           isChevronDown ? 'max-h-[500px] open-menu' : 'max-h-0 closed-menu',
@@ -49,9 +49,9 @@
         <NuxtLink
           v-for="item in items"
           @click="
-            (e) => {
+            (e: Event) => {
               e.stopPropagation();
-              m.saveQuickAcess(item);
+              s.setCounter(item);
             }
           "
           :to="item.path"
@@ -69,13 +69,13 @@
           </div>
         </NuxtLink>
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
 const isChevronDown = ref<boolean>(false);
-const m = useModule();
+const s = useSidebar();
 
 defineProps({
   items: {

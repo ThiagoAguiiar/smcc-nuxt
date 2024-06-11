@@ -1,4 +1,4 @@
-export const asideLinksTest: IAsideLinks = {
+const navigation: IAsideLinks = {
   cientifico: {
     eventos: {
       name: "Eventos",
@@ -8,7 +8,7 @@ export const asideLinksTest: IAsideLinks = {
       subLinks: [
         {
           name: "Lista de eventos",
-          path: "lista",
+          path: "",
           icon: "fluent:list-20-regular",
           counter: 0,
         },
@@ -155,3 +155,58 @@ export const asideLinksTest: IAsideLinks = {
     },
   },
 };
+
+/* Gerencia as rotas visíveis de acordo com o módulo selecionado */
+export default defineStore("useSidebar", () => {
+  const asideLinks = ref<AsideLinksItem>();
+  const asideLinksSearch = ref<CommandPalleteList[]>([]);
+
+  const cookieRef = useRuntimeConfig().public.smccSettingsCookie;
+
+  const setCounter = (item: SubLink) => {
+    const code = item.path.split("/");
+
+    if (asideLinks.value) {
+      const sb = asideLinks.value[code[3]].subLinks;
+      sb.find((value) => value.name == item.name)!.counter++;
+    }
+  };
+
+  const getAsideLinks = () => {
+    const currentModule = JSON.parse(
+      localStorage.getItem(cookieRef) as string
+    ) as ISetupSettings;
+
+    console.log(currentModule);
+
+    if (currentModule) {
+      // Armazena os links visíveis no sidebar
+      asideLinks.value =
+        navigation[currentModule.currentModule as keyof typeof navigation];
+    }
+
+    if (asideLinks.value) {
+      // Organiza os links para pesquisa no command palette
+      asideLinksSearch.value = Object.keys(asideLinks.value).map((item) => {
+        const hydrateSubLinks = asideLinks.value![item].subLinks.map(
+          (subLink: any) => {
+            return {
+              label: subLink.name,
+              icon: subLink.icon,
+              to: asideLinks.value![item].baseURL + subLink.path,
+              id: subLink.name,
+            };
+          }
+        );
+
+        return {
+          key: asideLinks.value![item].name,
+          label: asideLinks.value![item].name,
+          commands: hydrateSubLinks,
+        };
+      });
+    }
+  };
+
+  return { asideLinks, asideLinksSearch, getAsideLinks, setCounter };
+});

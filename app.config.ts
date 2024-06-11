@@ -1,7 +1,12 @@
 export default defineAppConfig({
   ui: {
-    icons: {
-      dynamic: true,
+    primary: "sea-green",
+    strategy: "merge",
+    icons: { dynamic: true },
+    input: {
+      variant: {
+        outline: "focus:ring-[#2b8663]",
+      },
     },
   },
 });

@@ -19,7 +19,7 @@ const r = useRouter();
 
 const value = ref<string>(m.getModule() || "");
 
-defineProps({
+const props = defineProps({
   modelValue: {
     type: String,
     required: false,
@@ -28,6 +28,11 @@ defineProps({
     type: String,
     required: false,
     default: "Selecionar",
+  },
+  noRedirect: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
@@ -49,7 +54,10 @@ watch(
     emits("update:modelValue", nv);
 
     m.setModule(nv);
-    r.push("/dashboard");
+
+    if (!props.noRedirect) {
+      r.push("/dashboard");
+    }
   }
 );
 </script>

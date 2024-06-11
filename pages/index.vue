@@ -12,7 +12,7 @@
 
     <div class="space-y-2.5 mt-5 mb-5">
       <UFormGroup label="Selecionar Módulo" name="module">
-        <FormModule v-model="formState.module" />
+        <FormModule v-model="formState.module" no-redirect />
       </UFormGroup>
 
       <UFormGroup label="Email" name="email">
@@ -37,14 +37,16 @@
 <script setup lang="ts">
 import { z } from "zod";
 
+const m = useModule();
+
 definePageMeta({
   layout: "auth",
 });
 
 const formValidation = z.object({
-  email: z.string().email(vMessages.email),
-  password: z.string().min(1, vMessages.common),
-  module: z.string().min(1, vMessages.select),
+  email: z.string().email(messages.email),
+  password: z.string().min(1, messages.common),
+  module: z.string().min(1, messages.select),
 });
 
 const loading = ref<boolean>(false);
@@ -52,7 +54,7 @@ const loading = ref<boolean>(false);
 const formState = reactive({
   email: "",
   password: "",
-  module: "",
+  module: m.getModule(),
 });
 
 const onSubmit = async () => {

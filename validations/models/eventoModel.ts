@@ -1,7 +1,11 @@
 const infoEvento: IEventInfo = {
-  certificadoParticipacao: false,
   conteudo: "",
   dataEvento: [],
+
+  certificados: {
+    certificadoParticipacao: false,
+    certificado: "",
+  },
 
   espacoSMCC: {
     local: "não",
@@ -15,28 +19,23 @@ const infoEvento: IEventInfo = {
   },
 
   grauParticipacao: "sem apoio",
+
   horarioEvento: {
     inicio: "",
     termino: "",
   },
 
+  inscricaoSite: false,
+  controlePresenca: false,
+
   inscricoes: {
-    inscricaoSite: false,
-
-    associado: {
-      isento: false,
-      valor: "",
-    },
-
-    smcc: {
-      isento: false,
-      valor: "",
-    },
+    isento: false,
+    precoCategoria: [],
   },
 
   kit: "kit básico",
   materialGrafico: false,
-  modalidadeEvento: "presencial",
+  modalidade: "presencial",
   numParticipantes: 0,
   observacoes: "",
 
@@ -51,7 +50,7 @@ const infoEvento: IEventInfo = {
   },
 
   publicoAlvo: "",
-  tituloEvento: "",
+  titulo: "",
   videoTransmissao: false,
 
   tipoSala: "reunião",
@@ -64,12 +63,12 @@ const infoEvento: IEventInfo = {
 const infoSolicitante: IContactInfo = {
   authorize: false,
 
-  categoriaSolicitante: {
+  catSolicitante: {
     categoria: "",
     solicitante: "",
   },
 
-  responsavelEvento: {
+  responsavel: {
     cpf: "",
     email: "",
     empresa: "",
@@ -80,6 +79,6 @@ const infoSolicitante: IContactInfo = {
 };
 
 export const eventoModel: IEventFormData = {
-  informacoesEvento: infoEvento,
-  informacoesSolicitante: infoSolicitante,
+  evento: infoEvento,
+  solicitante: infoSolicitante,
 };

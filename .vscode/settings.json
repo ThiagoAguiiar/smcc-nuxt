@@ -25,5 +25,8 @@
 
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+
+  "workbench.tree.indent": 15,
+  "explorer.compactFolders": false
 }

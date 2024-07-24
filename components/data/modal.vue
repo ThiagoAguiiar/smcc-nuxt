@@ -1,5 +1,6 @@
 <template>
   <UModal
+    fullscreen
     v-model="isOpen"
     :ui="{ rounded: 'rounded-md', width }"
     :prevent-close="preventClose"

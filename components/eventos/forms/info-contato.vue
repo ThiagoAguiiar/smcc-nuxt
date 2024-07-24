@@ -10,7 +10,7 @@
       >
         <URadioGroup
           class="mt-3"
-          v-model="models.categoriaSolicitante.categoria"
+          v-model="models.catSolicitante.categoria"
           :ui="{ fieldset: 'space-y-2' }"
           :options="categoriaSolicitanteOptions"
         />
@@ -20,7 +20,7 @@
         name="informacoesSolicitante.categoriaSolicitante.solicitante"
       >
         <UInput
-          v-model="models.categoriaSolicitante.solicitante"
+          v-model="models.catSolicitante.solicitante"
           size="xs"
           placeholder="Especificar"
         />

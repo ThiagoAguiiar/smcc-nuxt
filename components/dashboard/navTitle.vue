@@ -37,7 +37,7 @@ defineProps({
   },
   breadcumb: {
     type: Array as PropType<BreadcumbLinks[]>,
-    required: true,
+    required: false,
   },
 });
 </script>

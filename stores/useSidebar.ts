@@ -14,7 +14,7 @@ const navigation: IAsideLinks = {
         },
         {
           name: "Cadastrar evento",
-          path: "cadastrar",
+          path: "",
           icon: "fluent:add-circle-20-regular",
           counter: 0,
         },

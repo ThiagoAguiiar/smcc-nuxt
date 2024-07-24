@@ -7,10 +7,18 @@ export interface IFilterEvent {
   dataInscricao: Date;
 }
 
+export interface IEventDate {
+  data: string;
+  hour: {
+    start: string | null;
+    end: string | null;
+  };
+}
+
 export interface IEventInfo {
-  modalidadeEvento: "presencial" | "online" | "hibrido"  | "especial";
-  tituloEvento: string;
-  dataEvento: string[];
+  modalidade: "presencial" | "online" | "hibrido" | "especial";
+  titulo: string;
+  dataEvento: IEventDate[];
 
   horarioEvento: {
     inicio: string;
@@ -22,21 +30,22 @@ export interface IEventInfo {
   numParticipantes: number;
   grauParticipacao: string;
 
-  inscricoes: {
-    inscricaoSite: boolean;
+  inscricaoSite: boolean;
+  controlePresenca: boolean;
 
-    associado: {
-      isento: boolean;
-      valor: string;
-    };
-
-    smcc: {
-      isento: boolean;
-      valor: string;
-    };
+  certificados: {
+    certificadoParticipacao: boolean;
+    certificado: string;
   };
 
-  certificadoParticipacao: boolean;
+  inscricoes: {
+    isento: boolean;
+
+    precoCategoria: {
+      preco: string;
+      categoria: string;
+    }[];
+  };
 
   espacoSMCC: {
     local: string | null;
@@ -74,12 +83,12 @@ export interface IEventInfo {
 }
 
 export interface IContactInfo {
-  categoriaSolicitante: {
+  catSolicitante: {
     categoria: string;
-    solicitante: string;
+    solicitante: string | null;
   };
 
-  responsavelEvento: {
+  responsavel: {
     nome: string;
     rg: string;
     telefone: string;
@@ -96,6 +105,6 @@ export interface ISpecialProjects {
 }
 
 export interface IEventFormData {
-  informacoesEvento: IEventInfo;
-  informacoesSolicitante: IContactInfo;
+  evento: IEventInfo;
+  solicitante: IContactInfo;
 }

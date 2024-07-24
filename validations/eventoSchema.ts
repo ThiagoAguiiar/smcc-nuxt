@@ -1,19 +1,12 @@
 import { z } from "zod";
 
-// Formulário de contato
 const contactSchema: z.ZodType<IContactInfo> = z.object({
-  authorize: z.literal(true, {
-    errorMap: () => ({
-      message: messages.check,
-    }),
-  }),
-
-  categoriaSolicitante: z.object({
+  catSolicitante: z.object({
     categoria: z.string(),
-    solicitante: z.string().min(1, messages.common),
+    solicitante: z.string().min(1, messages.common).nullable(),
   }),
 
-  responsavelEvento: z.object({
+  responsavel: z.object({
     cpf: cpfShema,
     email: emailSchema,
     rg: rgSchema,
@@ -21,12 +14,14 @@ const contactSchema: z.ZodType<IContactInfo> = z.object({
     nome: z.string().min(1, messages.common),
     telefone: z.string().min(15, messages.common),
   }),
+
+  authorize: z.literal(true),
 });
 
 // Formulário de informações do evento
 const infoSchema: z.ZodType<IEventInfo> = z.object({
-  modalidadeEvento: z.enum(["presencial", "hibrido", "online", "especial"]),
-  tituloEvento: z.string().trim().min(1, messages.common),
+  modalidade: z.enum(["presencial", "hibrido", "online", "especial"]),
+  titulo: z.string().trim().min(1, messages.common),
   dataEvento: z.array(z.string()).min(1, messages.date),
 
   horarioEvento: z.object({
@@ -94,10 +89,10 @@ const infoSchema: z.ZodType<IEventInfo> = z.object({
   tipoEvento: z.enum(["youtube", "publico", "privado"]),
   senhaSala: z.string().nullable(),
   edicaoVideo: z.boolean(),
-  conteudoOnline: z.enum(['editado', 'disponível na plataforma smcc']),
+  conteudoOnline: z.enum(["editado", "disponível na plataforma smcc"]),
 });
 
 export const eventoSchemaValidation: z.ZodType<IEventFormData> = z.object({
-  informacoesEvento: infoSchema,
-  informacoesSolicitante: contactSchema,
+  evento: infoSchema,
+  solicitante: contactSchema,
 });
